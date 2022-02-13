@@ -12,6 +12,9 @@ The paper PDF will be available soon!
 * `GraphNLI` folder contains the implementation of Graph Walks and GraphNLI model.
 * `Baselines` folder contains the implementation of all the four baselines in the paper.
 
+## Kialo Dataset
+Please email us to get the Kialo dataset of online debates.
+
 ## Citation
 If you find this paper useful in your research, please consider citing:
 ```
