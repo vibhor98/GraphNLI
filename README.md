@@ -8,12 +8,25 @@ Various deep learning models have been used to classify the polarity, where the 
 
 The paper PDF will be available soon!
 
+## Overview
+**GraphNLI** is a graph-based deep learning architecture for polarity prediction, which captures both the local and the global context of the online debates through graph walks.
+
+<div align="center">
+  <img src="https://github.com/vibhor98/GraphNLI/blob/main/images/GraphNLIArch.png">
+</div>
+
 ## Directory Structure
 * `GraphNLI` folder contains the implementation of Graph Walks and GraphNLI model.
 * `Baselines` folder contains the implementation of all the four baselines in the paper.
 
 ## Kialo Dataset
 Please email us to get the Kialo dataset of online debates.
+
+An example of the arguments made in a Kialo debate:
+
+<div align="center">
+  <img src="https://github.com/vibhor98/GraphNLI/blob/main/images/pro_life_pro_choice_arguments.png">
+</div>
 
 ## Citation
 If you find this paper useful in your research, please consider citing:

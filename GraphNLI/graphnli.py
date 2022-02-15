@@ -46,8 +46,8 @@ trainset = trainset.fillna('')
 
 for i in range(len(trainset)):
     texts = []
-    for j in range(1, random_walk_len+1):  # 6 for graph walk and 5 for random walk.
-            texts.append(trainset.iloc[i]['sent' + str(j)])
+    for j in range(1, random_walk_len+1):  # 5 for graph walk and 4 for random walk.
+        texts.append(trainset.iloc[i]['sent' + str(j)])
     train_samples.append(InputExample(texts=texts, label=int(trainset.iloc[i]['label'])))
 
 devset = pd.read_csv('../test_graph_random_walk.csv')
@@ -71,18 +71,17 @@ warmup_steps = math.ceil(len(train_dataloader) * num_epochs * 0.1) #10% of train
 
 # Train the model
 model.fit(train_objectives=[(train_dataloader, train_loss)],
-          evaluator=dev_evaluator,
-          epochs=num_epochs,
-          evaluation_steps=1000,
-          warmup_steps=warmup_steps,
-          output_path=model_save_path
-          )
+    evaluator=dev_evaluator,
+    epochs=num_epochs,
+    evaluation_steps=1000,
+    warmup_steps=warmup_steps,
+    output_path=model_save_path)
 
 
 # Load the stored model and evaluate its performance on the test set.
 test_dataloader = DataLoader(test_samples, shuffle=True, batch_size=train_batch_size)
 
-model = SentenceTransformer(model_save_path)
-test_loss = SoftmaxLoss(model=model, sentence_embedding_dimension=model.get_sentence_embedding_dimension(), num_labels=2)
-test_evaluator = LabelAccuracyEvaluator(test_dataloader, name='sts-test', softmax_model=test_loss)
+# model = SentenceTransformer(model_save_path)
+
+test_evaluator = LabelAccuracyEvaluator(test_dataloader, name='sts-test', softmax_model=train_loss)
 test_evaluator(model, output_path=model_save_path)
